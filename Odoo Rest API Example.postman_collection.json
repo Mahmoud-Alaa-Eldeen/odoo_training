@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "324a049a-d768-43f6-9611-c7235df3e637",
+		"name": "Odoo Rest API Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28330095"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8014/object/res.partner/create_partner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"params\": {\n\t\"args\": [],\n\t\"kwargs\": \n\t\n\t\n\t{\n\t    \"name\": \"Mahmoud ALaa\",\n\t    \"email\": \"d@d.com\",\n                \"phone\":\"01140201325\"\n\n\t  \n\t}\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8014/object/res.partner/create_partner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8014",
+					"path": [
+						"object",
+						"res.partner",
+						"create_partner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8014/auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"params\": {\n         \"login\": \"external_access\",\n         \"password\": \"1\",\n         \"db\": \"testing_odoo\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8014/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8014",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
