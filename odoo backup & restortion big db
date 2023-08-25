@@ -1,0 +1,43 @@
+
+
+
+download  backup inside the server: 
+sudo curl -X POST -F 'master_pwd=admin123' -F 'name=_Bulck_Confirm_24_7_2023.zip' -F 'backup_format=zip' -o /odoo16/backups/live_9aug2023.zip http://localhost:8069/web/database/backup
+
+
+restore backup from the server:
+curl -F 'master_pwd=admin123' -F backup_file=@/opt/odoo15/backups/_6236572_2023-08-09_211657_exact_fs.zip -F 'copy=true' -F 'name=live_10aug' http://localhost:8069/web/database/restore
+
+
+
+
+
+
+copy file from server to local device & vesa virsa
+
+scp root@4.5.6.:/path/to/remote/file /path/to/local/file
+and vice versa:
+
+scp /path/to/local/file remote_user@remote_host:/path/to/remote/file
+
+
+
+auto backup on server:
+https://apps.odoo.com/apps/modules/13.0/auto_backup/
+
+
+
+
+===================
+
+
+
+
+
+
+where is file store of odoo db:
+/home/besho/.local/share/Odoo14
+
+
+size of a file :
+du -sh file_name /db_name 
