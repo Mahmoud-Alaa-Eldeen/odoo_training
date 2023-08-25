@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="point_of_sale.ReceiptScreen" xml:space="preserve">
+        <t t-name="ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+            <xpath expr="//div[hasclass('button') and hasclass('print')]" position="after">
+
+<!--omara 4-->
+                <span>Gift Receipt</span>
+                <input type="checkbox" id="g01-01" t-att-value="this" t-on-click="_show_receipt_template"
+                       t-on-change="_show_receipt_template">
+
+                </input>
+
+
+            </xpath>
+
+
+            <xpath expr="//div[hasclass('pos-receipt-container')]" position="replace">
+                <!--                    omara 5 render order receipt or priceless receipt depending on gift checkbox-->
+                    <t t-if="this.env.pos.gift">
+                        <div class="pos-receipt-container" t-ref="order-receipt">
+                            <OrderReceipt_without_prices order="currentOrder"/>
+                        </div>
+
+                    </t>
+                <!--                    end-->
+
+                <t t-else="">  <!--                    original changed with condition-->
+                    <div class="pos-receipt-container" t-ref="order-receipt">
+                        <OrderReceipt order="currentOrder"/>
+                    </div>
+
+                </t>
+                <!--                    end-->
+
+            </xpath>
+        </t>
+
+</templates>

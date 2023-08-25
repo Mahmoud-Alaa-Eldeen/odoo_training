@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="set_therapist_popup" owl="1">
+         <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-textarea">
+                    <header class="title drag-handle">
+                      Add Therapists
+                    </header>
+                    <main>
+
+                         <br/>
+
+                        <div t-if="env.pos.employees_data">
+<!--                        <span class="label" style="margin-right:50px;">First Therapist:</span>-->
+                            <select class="detail" id="first_therapist" name="first_therapist" >
+                               <option value=""/>
+                                <t t-foreach="env.pos.employees_data" t-as="employee"
+                                   t-key="employee.id">
+                                <option t-att-value="employee.id">
+                                    <t t-esc="employee.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                        <div t-if="env.pos.employees_data">
+<!--                        <span class="label" style="margin-right:50px;">Second Therapist:</span>-->
+                            <select class="detail" id="second_therapist" name="second_therapist">
+                               <option value=""></option>
+                            <t t-foreach="env.pos.employees_data" t-as="employee"
+                               t-key="employee.id">
+                                <option t-att-value="employee.id">
+                                    <t t-esc="employee.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                        <div t-if="env.pos.employees_data">
+<!--                        <span class="label" style="margin-right:50px;">Third Therapist:</span>-->
+                            <select class="detail" id="third_therapist" name="third_therapist">
+                             <option value=""></option>
+                            <t t-foreach="env.pos.employees_data" t-as="employee"
+                               t-key="employee.id">
+                                <option t-att-value="employee.id">
+                                    <t t-esc="employee.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+
+
+                        <br/>
+                        <br/>
+
+                        <div style="margin-bottom:20px;">
+                        <button style="margin-right:60px;height: 40px; width: 80px;"
+                                t-on-click="add_therapists">Add</button>
+                            <button style="height: 40px; width: 80px; " t-on-click="cancel">Cancel</button>
+                      </div>
+                        <br/>
+                        <br/>
+                     </main>
+                </div>
+
+            </Draggable>
+         </div>
+    </t>
+</templates>
+

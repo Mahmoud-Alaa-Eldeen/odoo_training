@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_ext" xml:space="preserve">
+    <t t-name="ReceiptScreenExt" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-container')]" position="after">
+            <div class="gift-receipt-container" style="display:none;">
+                <GiftReceipt order="currentOrder" t-ref="order-receipt" />
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('print')]" position="after">
+            <div class="button" t-on-click="printGiftReceipt">
+                <i class='fa fa-print'></i>
+                Print Gift Receipt
+            </div>
+            <div id="saveSignature" hidden="True"/>
+        </xpath>
+    </t>
+</templates>

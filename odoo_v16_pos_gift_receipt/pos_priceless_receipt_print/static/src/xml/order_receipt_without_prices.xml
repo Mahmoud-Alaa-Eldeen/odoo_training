@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!--    omara 3 template-->
+    <t t-name="OrderReceipt_without_prices" owl="1">
+        <div class="pos-receipt">
+            <t t-if="receipt.company.logo">
+                <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"/>
+                <br/>
+            </t>
+            <t t-if="!receipt.company.logo">
+                <h2 class="pos-receipt-center-align">
+                    <t t-esc="receipt.company.name"/>
+                </h2>
+                <br/>
+            </t>
+            <div class="pos-receipt-contact">
+                <t t-if="receipt.company.contact_address">
+                    <div><t t-esc="receipt.company.contact_address" /></div>
+                </t>
+                <t t-if="receipt.company.phone">
+                    <div>Tel:<t t-esc="receipt.company.phone"/></div>
+                </t>
+                <t t-if="receipt.company.vat">
+                    <div><t t-esc="receipt.company.vat_label"/>:
+                        <t t-esc="receipt.company.vat"/></div>
+                </t>
+                <t t-if="receipt.company.email">
+                    <div><t t-esc="receipt.company.email" /></div>
+                </t>
+                <t t-if="receipt.company.website">
+                    <div><t t-esc="receipt.company.website" /></div>
+                </t>
+                <t t-if="receipt.header_html">
+                    <t t-out="receipt.header_html"/>
+                </t>
+                <t t-if="!receipt.header_html and receipt.header">
+                    <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
+                </t>
+                <t t-if="receipt.cashier">
+                    <div class="cashier">
+                        <div>--------------------------------</div>
+                        <div>Served by <t t-esc="receipt.cashier"/></div>
+                    </div>
+                </t>
+
+            </div>
+            <br/>
+
+            <div class="pos-receipt-order-data">
+                <div><t t-esc="receipt.name" /></div>
+                <t t-if="receipt.date.localestring">
+                    <div><t t-esc="receipt.date.localestring" /></div>
+                </t>
+                <t t-else="">
+                    <div><t t-esc="receipt.date.validation_date" /></div>
+                </t>
+            </div>
+
+            <br/>
+            <div style="text-align: center!important;">
+             <div>--------------------------------</div>
+                <strong>*Gift Card*</strong>
+                <div>--------------------------------</div>
+            </div>
+            <br/>
+
+            <!-- Orderlines -->
+
+            <div class="orderlines">
+        <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
+            <t t-if="isSimple(line)">
+                <div >
+                    <t t-esc="line.product_name_wrapped[0]"/>
+                    <span style="float:right" t-esc="Math.round(line.quantity)"/>
+                </div>
+
+            </t>
+
+             <t t-else="">
+                <div >
+                    <t t-esc="line.product_name_wrapped[0]"/>
+                    <span style="float:right" t-esc="Math.round(line.quantity)"/>
+                </div>
+
+        </t>
+        </t>
+            </div>
+
+
+        </div>
+    </t>
+    <!--end-->
+</templates>
