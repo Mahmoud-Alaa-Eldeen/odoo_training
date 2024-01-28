@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="api_url_tree_view" model="ir.ui.view">
+            <field name="name">api_url_tree_view</field>
+            <field name="model">api.url</field>
+            <field name="arch" type="xml">
+                <tree string="APIs URLs" editable="top">
+                    <field name="name"/>
+                    <field name="url"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="act_api_url" model="ir.actions.act_window">
+            <field name="name">API URL</field>
+            <field name="res_model">api.url</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="api_url_menu" name="API URL"
+                  parent="base.menu_custom" sequence="1000"
+                  action="act_api_url"/>
+
+
+    </data>
+</odoo>

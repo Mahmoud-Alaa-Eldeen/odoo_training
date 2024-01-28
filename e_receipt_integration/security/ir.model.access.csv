@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+api_url,api_url,model_api_url,,1,1,1,1
+receipt_integration,receipt_integration,model_receipt_integration,,1,1,1,1
+api_parameter,api_parameter,model_api_parameter,,1,1,1,1
+helper_functions,helper_functions,model_helper_functions,,1,1,1,1

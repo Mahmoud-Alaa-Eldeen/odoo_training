@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="schneider_ap_ar_debit_credit.list">
+      <field name="name">schneider_ap_ar_debit_credit list</field>
+      <field name="model">schneider_ap_ar_debit_credit.schneider_ap_ar_debit_credit</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="schneider_ap_ar_debit_credit.action_window">
+      <field name="name">schneider_ap_ar_debit_credit window</field>
+      <field name="res_model">schneider_ap_ar_debit_credit.schneider_ap_ar_debit_credit</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="schneider_ap_ar_debit_credit.action_server">
+      <field name="name">schneider_ap_ar_debit_credit server</field>
+      <field name="model_id" ref="model_schneider_ap_ar_debit_credit_schneider_ap_ar_debit_credit"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="schneider_ap_ar_debit_credit" id="schneider_ap_ar_debit_credit.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="schneider_ap_ar_debit_credit.menu_1" parent="schneider_ap_ar_debit_credit.menu_root"/>
+    <menuitem name="Menu 2" id="schneider_ap_ar_debit_credit.menu_2" parent="schneider_ap_ar_debit_credit.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="schneider_ap_ar_debit_credit.menu_1_list" parent="schneider_ap_ar_debit_credit.menu_1"
+              action="schneider_ap_ar_debit_credit.action_window"/>
+    <menuitem name="Server to list" id="schneider_ap_ar_debit_credit" parent="schneider_ap_ar_debit_credit.menu_2"
+              action="schneider_ap_ar_debit_credit.action_server"/>
+    -->
+  </data>
+</odoo>

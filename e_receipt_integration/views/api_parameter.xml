@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="api_parameter_tree_view" model="ir.ui.view">
+            <field name="name">api_parameter_tree_view</field>
+            <field name="model">api.parameter</field>
+            <field name="arch" type="xml">
+                <tree string="API ParameterS" editable="top">
+                    <field name="name"/>
+                    <field name="value"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="act_api_parameter" model="ir.actions.act_window">
+            <field name="name">API Parameter</field>
+            <field name="res_model">api.parameter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="api_parameter_menu" name="API Parameter"
+                  parent="base.menu_custom" sequence="1000"
+                  action="act_api_parameter"/>
+
+
+    </data>
+</odoo>
