@@ -1,0 +1,180 @@
+<odoo>
+    <data>
+        
+        <record id="ir_cron_attendance_process" model="ir.cron">
+            <field name="name">Process Attendance</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="model_hr_attendance_zk_temp"/>
+            <field name="state">code</field>
+            <field name="code">model.process_data()</field>
+        </record>
+        <record id="attendance_machine_logs_tree_view" model="ir.ui.view">
+            <field name="name">attendance_machine_logs_tree_view</field>
+            <field name="model">hr.attendance.zk.temp</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance Logs" editable="top">
+                    <field name="machine_id" readonly="1"/>
+                    <field name="user_number"/>
+                    <field name="user"/>
+                    <field name="date"/>
+                    <field name="date_temp"/>
+                    <field name="inoutmode"/>
+                    <field name="logged" readonly="1"/>
+                    <!--<button name="timezone_correction" type="object" string="correct timezone"/>-->
+                </tree>
+            </field>
+        </record>
+
+
+        <!--lllllllllllllllllllllllllllllllll-->
+
+        <record id="zk_config" model="ir.ui.view">
+            <field name="name">Attendance configuration</field>
+            <field name="model">zk.attendance.setting</field>
+            <field name="arch" type="xml">
+                <form string="ZK Attendance configuration" class="oe_form_configuration">
+                    <header>
+                        <button string="Save" type="object"
+                                name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object"
+                                name="cancel" class="oe_link"/>
+                    </header>
+                    <group string="Attendance" col="2">
+
+                        <!--<label for="no_checkout_mode"/>-->
+                        <field name="api_ip"/>
+                        <field name="api_port"/>
+                        <field name="no_checkout_mode"/>
+                        <field name="deflt_time" widget="float_time"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="hr_atten_settings_action" model="ir.actions.act_window">
+            <field name="name">Attendance configuration</field>
+            <field name="res_model">zk.attendance.setting</field>
+            <field name="view_id" ref="zk_config"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+        <!--<menuitem id="zk_conf" name="Configuration"-->
+        <!--parent="hr_attendance.menu_hr_attendance_root"/>-->
+        <menuitem id="zk_conf_setting" name="ZK Attendance Machines"
+                  parent="hr_attendance.menu_hr_attendance_settings" action="hr_atten_settings_action"/>
+
+        <!--lllllllllllllllllllllllllllllllll-->
+
+
+        <record id="attendance_machine_tree_view" model="ir.ui.view">
+            <field name="name">attendance_machine_tree_view</field>
+            <field name="model">hr.attendance.zk.machine</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance Machines">
+                    <field name="machine_number"/>
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <field name="sync"/>
+                    <!--<field name="date_sync"/>-->
+                    <!--<field name="date_sync_success"/>-->
+                    <!--<field name="manual_upload_sync_date"/>-->
+                    <!--<field name="sync_error"/>-->
+                </tree>
+            </field>
+        </record>
+        <!--        <record id="inherit_hr_employee" model="ir.ui.view">-->
+        <!--            <field name="name">inherit_hr_employee</field>-->
+        <!--            <field name="model">hr.employee</field>-->
+        <!--            <field name="inherit_id" ref="hr.view_employee_form"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <field name="work_phone" position="after">-->
+        <!--                    <field name="zk_emp_id"/>-->
+        <!--                </field>-->
+        <!--            </field>-->
+        <!--        </record>-->
+        <record id="attendance_machine_form_view" model="ir.ui.view">
+            <field name="name">attendance_machine_form_view</field>
+            <field name="model">hr.attendance.zk.machine</field>
+            <field name="arch" type="xml">
+                <form string="Attendance Machines">
+                    <header>
+                        <button name="process" string="process" type="object"></button>
+                    </header>
+                    <group>
+                        <field name="machine_number"/>
+                        <field name="name"/>
+                        <field name="model"/>
+                        <field name="ip"/>
+                        <field name="port"/>
+                        <field name="last_download_log"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="missing_in_out_form_inherit" model="ir.ui.view">
+            <field name="name">missing.check.out.in</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="edit">false</attribute>
+                    <attribute name="delete">false</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="missing_in_out_tree_inherit" model="ir.ui.view">
+            <field name="name">missing.check.out.in</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="edit">false</attribute>
+                    <attribute name="delete">false</attribute>
+                </xpath>
+
+
+                <xpath expr="//field[@name='check_out']" position="after">
+                    <field name="missing_check"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="act_attendance_machine" model="ir.actions.act_window">
+            <field name="name">Attendance Machine</field>
+            <field name="res_model">hr.attendance.zk.machine</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="act_attendance_logs" model="ir.actions.act_window">
+            <field name="name">Attendance Log</field>
+            <field name="res_model">hr.attendance.zk.temp</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="attendance_zk_main_menu" name="ZK Attendance Machines"
+                  parent="hr_attendance.menu_hr_attendance_root" groups="hr.group_hr_user" sequence="5"/>
+        <menuitem id="attendance_machine_menu" name="Attendance Machines"
+                  parent="attendance_zk_main_menu" groups="hr.group_hr_user" sequence="5"
+                  action="act_attendance_machine"/>
+        <menuitem id="attendance_log_menu" name="Attendance Logs"
+                  parent="attendance_zk_main_menu" groups="hr.group_hr_user" sequence="5"
+                  action="act_attendance_logs"/>
+    </data>
+</odoo>
